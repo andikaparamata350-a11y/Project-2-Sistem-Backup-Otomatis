@@ -1,0 +1,45 @@
+mkdir project2
+cd project2
+mkdir -p sumberfile backup_otomatis
+echo "contoh file txt" > sumberfile/cttan.txt
+echo "contoh file pdf" > sumberfile/laporan.pdf
+nano backup.sh
+
+#!/bin/bash
+# 1. directory sumber
+SOURCE_DIR=sumberfile
+# 2. directory tujuan backup
+BACKUP_DIR=backup_otomatis
+# buat directory backup jika belum ada
+mkdir -p "$BACKUP_DIR"
+# timestamp (agar nama berkas tidak bertabrakan)
+TIMESTAMP =$ (date +"%Y%m%d_%H%M%S")
+# nama file backup
+BACKUP_FILE="backup${TIMESTAMP}.tar.gz"
+# 6. lokasi file log
+LOG_FILE="$BACKUP_DIR/backup.log"
+
+echo "Backup di jalankan pada : $TIMESTAMP" >> "LOG_FILE"
+
+# 3. cari file .txd dan .pdf yang di modifikasi 7 hari terakhir
+FILES=$(find "$SOURCE_DIR" -type f \( -name "*.txt" -o -name "*.pdf" \) -mtime -7)
+#jika tidak ada file, tulis log dan keluar
+if [-z "$FILES" ]; then
+    echo "tidak ada file yang memenuhi kriteria." >> "$LOG_FILE"
+    echo "backup gagal: tidak ada file yang memenuhi kriteria."
+exit 1
+fi
+# 4. kompres file menggunakan tar + gzip
+tar -czf "$BACKUP_DIR/BACKUP_FILE" $FILES
+# cek apakah backup berhasil
+if [ $? -eq 0 ]; then
+    echo "Backup berhasil: file $BACKUP_FILE dibuat." >> "$LOG_FILE"
+    echo "Backup berhasilkah! file tersimpan sebagai: "$BACKUP_FILE"
+else
+    echo "Backup gagal saat kompresi." >> "$LOG_FILE"
+    echo "Backup gagal."
+exit 1
+fi
+
+chmod +x backup.sh
+./backup.sh

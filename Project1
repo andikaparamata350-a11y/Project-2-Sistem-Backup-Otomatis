@@ -1,0 +1,36 @@
+# 1. menbuat 3 departemen
+mkdir -p project1
+cd project1
+mkdir -p {Marketing,Engineering,HR}/{documents,archives}
+ls
+echo "bis" > mrt.pdf
+echo "mill" > eng.pdf
+echo "lah" > hr.pdf
+
+# 2. memindahkan file yang salah tempat ke directory yang benar kemudian backup ke archives
+mv mrt.pdf Marketing/documents
+mv eng.pdf Engineering/documents
+mv hr.pdf HR/documents
+
+cp Marketing/documents/mrt.pdf Marketing/archives
+cp Engineering/documents/eng.pdf Engineering/archives
+cp HR/documents/hr.pdf HR/archives
+
+# 3. Mengatur set permission yang tepat agar hanya departemen terkait yang bisa mengakse folder mereka
+
+sudo addgroup marketing #membuat grup baru di Linux Grup digunakan untuk membatasi akses folder
+
+sudo usermod -aG marketing user1 #usermod → mengubah pengaturan. user-aG → menambahkan user ke grup tanpa menghapus grup lain. User yang ada dalam grup akan memiliki akses ke folder departemen tersebut
+
+sudo chown root:marketing /departemen/Marketing #chown → mengubah owner & group folder.User yang ada dalam grup otomatis dapat mengakses folder tersebut
+
+sudo chmod 770 /departemen/Marketing #
+
+ls -l #untuk melihat hasil
+
+# 4.Cari dan filter
+#Temukan semua file PDF yang dibuat minggu lalu dan buat 
+daftar lengkapnya
+
+find -type f -name "*.pdf" -mtime -7 #untuk mencari file pdf 7 hari terakhir
+find -type f -name "*.pdf" -mtime -7 > filepdf_7hari_terkahir.txt #mencari dan membuat daftar file pdr 7 hari terakhir.

@@ -1,6 +1,16 @@
+mkdir project2
+cd project2
+mkdir source_files backup logs
+cd source_files
+for i in {1..2}; do echo "laporan harian ke-$i" > laporan$i.txt; done
+for i in {1..2}; do echo "catatan evaluasi minggu ke-$i" > file$i.pdf; done
+ls
+cd ..
+nano backup.sh
+
 #!/bin/bash
 
-#KONFIGURASI
+#KONFIGURASIcd 
 SOURCE_DIR="source_files"
 BACKUP_DIR="backup"
 LOG_FILE="logs/backup.log"
@@ -31,3 +41,7 @@ echo "$(date) BERHASIL : Backup tersimpan sebagai $BACKUP_DIR/$BACKUP_NAME" >> "
 echo "Backup berhasil!"
 echo "file backup: $BACKUP_NAME"
 echo "Lokasi penyimpanan: $BACKUP_DIR/"
+
+
+chmod +x backup.sh
+./backup.sh

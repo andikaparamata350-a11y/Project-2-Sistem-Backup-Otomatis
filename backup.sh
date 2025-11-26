@@ -1,13 +1,3 @@
-mkdir project2
-cd project2
-mkdir source_files backup logs
-cd source_files
-for i in {1..2}; do echo "laporan harian ke-$i" > laporan$i.txt; done
-for i in {1..2}; do echo "catatan evaluasi minggu ke-$i" > file$i.pdf; done
-ls
-cd ..
-nano backup.sh
-
 #!/bin/bash
 
 #KONFIGURASIcd 

@@ -31,7 +31,5 @@ echo "$(date) BERHASIL : Backup tersimpan sebagai $BACKUP_DIR/$BACKUP_NAME" >> "
 echo "Backup berhasil!"
 echo "file backup: $BACKUP_NAME"
 echo "Lokasi penyimpanan: $BACKUP_DIR/"
-
-
-chmod +x backup.sh
-./backup.sh
+exit 1
+fi

@@ -1,8 +1,12 @@
 mkdir project2
 cd project2
-mkdir -p sumberfile backup_otomatis
-echo "contoh file txt" > sumberfile/cttan.txt
-echo "contoh file pdf" > sumberfile/laporan.pdf
+mkdir source_files backup logs
+ls
+cd sorce_files
+echo "contoh laporan" > laporan.txt
+echo "contoh laporan1" > laporan.pdf
+ls
+
 nano backup.sh
 
 #!/bin/bash

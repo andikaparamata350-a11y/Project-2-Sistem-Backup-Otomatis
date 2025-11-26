@@ -20,9 +20,7 @@ cp HR/documents/hr.pdf HR/archives
 
 sudo addgroup marketing #membuat grup baru di Linux Grup digunakan untuk membatasi akses folder
 
-sudo usermod -aG marketing user1 #usermod → mengubah pengaturan. user-aG → menambahkan user ke grup tanpa menghapus grup lain. User yang ada dalam grup akan memiliki akses ke folder departemen tersebut
-
-sudo chown root:marketing /departemen/Marketing #chown → mengubah owner & group folder.User yang ada dalam grup otomatis dapat mengakses folder tersebut
+sudo chown -R :marketing /departemen/Marketing #chown → mengubah owner & group folder.User yang ada dalam grup otomatis dapat mengakses folder tersebut
 
 sudo chmod 770 /departemen/Marketing #
 
